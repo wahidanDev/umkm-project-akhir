@@ -1,4 +1,4 @@
-// routes/sales.js
+
 import express from "express";
 import Sale from "../models/Sale.js";
 

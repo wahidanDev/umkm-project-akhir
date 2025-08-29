@@ -10,8 +10,8 @@ const ProductSchema = new mongoose.Schema(
     category: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
     isNewProduct: { type: Boolean, default: false },
     discount: { type: Number, default: 0 },
-    sold: { type: Number, default: 0 },        // total produk terjual
-    revenue: { type: Number, default: 0 },     // total penjualan
+    sold: { type: Number, default: 0 },       
+    revenue: { type: Number, default: 0 },     
   },
   { timestamps: true }
 );

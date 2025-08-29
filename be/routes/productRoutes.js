@@ -10,7 +10,7 @@ const router = express.Router();
 // Get all products
 router.get("/", async (req, res) => {
   try {
-    const products = await Product.find(); // kalau tanpa category
+    const products = await Product.find();
     res.json(products);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -54,7 +54,7 @@ router.post(
         rating: 0,
         isNewProduct: true,
         image: req.file?.path || null,
-        category: null, // karena tidak input category
+        category: null,
       });
 
       await product.save();
