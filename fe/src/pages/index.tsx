@@ -1,4 +1,5 @@
 import { About } from "@/components/about";
+import FAQPage from "@/components/faq";
 import Hero from "@/components/hero";
 import DefaultLayout from "@/layouts/default";
 
@@ -8,6 +9,7 @@ export default function IndexPage() {
       <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
         <Hero />
         <About />
+        <FAQPage />
       </section>
     </DefaultLayout>
   );

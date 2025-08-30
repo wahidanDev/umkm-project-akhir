@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Get top products (by sold)
+// Get top products (by sold) - HARUS SEBELUM /:id
 router.get("/top", async (req, res) => {
   try {
     const products = await Product.find()
@@ -30,6 +30,23 @@ router.get("/top", async (req, res) => {
 
     res.json(products);
   } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Get single product by ID
+router.get("/:id", async (req, res) => {
+  try {
+    console.log("Fetching product with ID:", req.params.id);
+    const product = await Product.findById(req.params.id);
+    if (!product) {
+      console.log("Product not found for ID:", req.params.id);
+      return res.status(404).json({ error: "Product not found" });
+    }
+    console.log("Product found:", product.name);
+    res.json(product);
+  } catch (err) {
+    console.error("Error fetching product:", err);
     res.status(500).json({ error: err.message });
   }
 });

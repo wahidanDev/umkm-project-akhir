@@ -1,6 +1,5 @@
 import { Card, CardBody } from "@heroui/card";
 import { FeaturedProducts } from "./featured-card";
-import { CartButton } from "./card-button";
 import { Sparkles } from "lucide-react";
 
 const categories = [
@@ -45,11 +44,6 @@ const categories = [
 export function Categories() {
   return (
     <section className="py-20 relative overflow-hidden">
-      <CartButton />
-      {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-emerald-200/30 to-teal-200/30 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-blue-200/30 to-purple-200/30 rounded-full blur-3xl"></div>
-
       <div className="container mx-auto px-4 relative z-10">
         {/* Heading */}
         {/* Section header */}

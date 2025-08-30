@@ -5,6 +5,8 @@ import IndexPage from "@/pages/index";
 import AboutPage from "@/pages/about";
 import LoginPage from "@/pages/login";
 import ProdukPage from "@/pages/product";
+import ProductDetailPage from "@/pages/product-detail";
+import CartPage from "@/pages/cart";
 import AdminPage from "@/pages/admin";
 import ProtectedRoute from "./components/protectedRoute";
 import RegisterPage from "./pages/register";
@@ -15,6 +17,8 @@ function App() {
       <Routes>
         <Route element={<IndexPage />} path="/" />
         <Route element={<ProdukPage />} path="/produk" />
+        <Route element={<ProductDetailPage />} path="/produk/:productId" />
+        <Route element={<CartPage />} path="/cart" />
         <Route element={<AboutPage />} path="/about" />
         {/* Admin hanya bisa diakses jika login & role=admin */}
         <Route

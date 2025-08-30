@@ -1,7 +1,6 @@
 import { FC } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
-import { Button } from "@heroui/button";
-import { Input } from "@heroui/input";
+
 import { Link } from "react-router-dom";
 
 export const Footer: FC = () => {
@@ -31,6 +30,8 @@ export const Footer: FC = () => {
             <ul className="space-y-2 text-sm">
               {[                
                 { label: "Produk", to: "/produk" },
+                { label: "About", to: "/about" },
+                { label: "FAQ", to: "/faq" },
               ].map((link) => (
                 <li key={link.label}>
                   <Link

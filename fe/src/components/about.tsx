@@ -1,14 +1,11 @@
-import { ArrowRight, Heart, Star, Users } from "lucide-react";
-import { Button } from "@heroui/button";
+import { Heart, Star, Users } from "lucide-react";
 import { Card, CardBody } from "@heroui/card";
-import { title, subtitle } from "@/components/primitives";
+import { title } from "@/components/primitives";
 
 export function About() {
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 via-white to-emerald-50 relative overflow-hidden">
+    <section className="py-20 relative overflow-hidden">
       {/* Background decorations */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-emerald-200/30 to-teal-200/30 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-blue-200/30 to-purple-200/30 rounded-full blur-3xl"></div>
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Heading */}
@@ -108,18 +105,6 @@ export function About() {
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Call to Action */}
-        <div className="text-center mt-20">
-          <Button
-            radius="lg"
-            size="lg"
-            className="bg-gradient-to-r from-[#FF705B] to-[#FFB457] hover:from-yellow-700 hover:to-amber-700 text-white shadow-lg hover:shadow-xl font-semibold px-8 py-6"
-          >
-            Hubungi Kami
-            <ArrowRight className="w-5 h-5 ml-2 inline" />
-          </Button>
         </div>
       </div>
     </section>

@@ -1,8 +1,8 @@
 import { Button } from "@heroui/button";
 import { ProductCard } from "./product-card";
-import axios from "axios";
+import { productApi } from "@/context/api/productApi";
 import { useEffect, useState } from "react";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 
 type Category = {
@@ -27,12 +27,12 @@ export function FeaturedProducts() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/products")
-      .then((res) => {
-        setProducts(res.data);
+    productApi
+      .getAll()
+      .then((data: Product[]) => {
+        setProducts(data);
       })
-      .catch((err) => {
+      .catch((err: any) => {
         console.error("Gagal fetch products:", err);
       })
       .finally(() => {
@@ -42,9 +42,7 @@ export function FeaturedProducts() {
 
   return (
     <section className="py-20 bg-white relative overflow-hidden">
-      {/* Background decorations */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-emerald-200/20 to-teal-200/20 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-tr from-blue-200/20 to-purple-200/20 rounded-full blur-3xl" />
+      
 
       <div className="container mx-auto px-4 relative z-10">
         

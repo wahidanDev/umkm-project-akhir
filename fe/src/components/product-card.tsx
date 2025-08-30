@@ -1,9 +1,9 @@
-import { ShoppingCart, Heart, Eye } from "lucide-react";
+import { Heart, ShoppingCart } from "lucide-react";
 import { Button } from "@heroui/button";
 import { Badge } from "@heroui/badge";
-import { Card, CardBody, CardFooter } from "@heroui/card";
 import { useCart } from "@/context/CartContext";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface ProductCardProps {
   _id: string;
@@ -28,12 +28,25 @@ export function ProductCard({
 }: ProductCardProps) {
   const { addToCart } = useCart();
   const [liked, setLiked] = useState(false);
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    console.log('Card clicked, navigating to:', `/produk/${_id}`);
+    navigate(`/produk/${_id}`);
+  };
+
+  const handleAddToCart = () => {
+    addToCart({ _id, name, price, image });
+  };
+
+  const handleLike = () => {
+    setLiked(!liked);
+  };
 
   return (
-    <Card
-      isHoverable
-      shadow="sm"
-      className="group transition-all duration-500 overflow-hidden border-0 bg-white/80 backdrop-blur-sm hover:-translate-y-2"
+    <div 
+      onClick={handleCardClick}
+      className="cursor-pointer group transition-all duration-500 overflow-hidden border-0 bg-white/80 backdrop-blur-sm hover:-translate-y-2 rounded-xl shadow-sm hover:shadow-lg"
     >
       {/* Gambar + overlay + action */}
       <div className="relative aspect-square overflow-hidden">
@@ -71,7 +84,7 @@ export function ProductCard({
             className={`bg-white/90 backdrop-blur-sm shadow-lg rounded-full transition-colors ${
               liked ? "text-white bg-red-400" : "text-gray-700 hover:text-yellow-600"
             }`}
-            onPress={() => setLiked(!liked)}
+            onPress={handleLike}
           >
             <Heart className="w-4 h-4" />
           </Button>
@@ -81,7 +94,7 @@ export function ProductCard({
         <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
           <Button
             fullWidth
-            onPress={() => addToCart({ _id, name, price, image })}
+            onPress={handleAddToCart}
             className="bg-gradient-to-r from-[#FF705B] to-[#FFB457] hover:from-yellow-700 hover:to-teal-700 text-white shadow-lg rounded-xl"
           >
             <ShoppingCart className="w-4 h-4 mr-2" />
@@ -91,7 +104,7 @@ export function ProductCard({
       </div>
 
       {/* Konten card */}
-      <CardBody className="p-6 space-y-4">
+      <div className="p-6 space-y-4">
         <div>
           <div className="flex items-center justify-between mb-2">
             <Badge
@@ -119,12 +132,12 @@ export function ProductCard({
             )}
           </div>
         </div>
-      </CardBody>
+      </div>
 
-      <CardFooter className="flex items-center justify-between pt-2 border-t border-gray-100 text-xs text-gray-500">
+      <div className="flex items-center justify-between pt-2 border-t border-gray-100 text-xs text-gray-500 px-6 pb-4">
         <div className="flex items-center">🚚 Gratis Ongkir</div>
         <div className="flex items-center">✅ Garansi Original</div>
-      </CardFooter>
-    </Card>
+      </div>
+    </div>
   );
 }

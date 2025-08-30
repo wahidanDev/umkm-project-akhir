@@ -14,12 +14,18 @@ import clsx from "clsx";
 import { Button } from "@heroui/button";
 
 import { siteConfig } from "@/config/site";
-import { ThemeSwitch } from "@/components/theme-switch";
-import { WhatsappIcon, InstagramIcon, TiktokIcon } from "@/components/icons";
 import { useAuth } from "@/context/AuthContext";
+import { useCart } from "@/context/CartContext";
+import { 
+  MessageCircle, 
+  Instagram, 
+  Music2, 
+  ShoppingCart 
+} from "lucide-react";
 
 export const Navbar = () => {
   const { user, logout } = useAuth();
+  const { cart } = useCart();
   const navigate = useNavigate();
 
   const handleLogin = () => {
@@ -38,16 +44,15 @@ export const Navbar = () => {
         <div className="hidden lg:flex gap-4 justify-start ml-2">
           {siteConfig.navItems.map((item) => (
             <NavbarItem key={item.href}>
-              <Link
+              <RouterLink
                 className={clsx(
                   linkStyles({ color: "foreground" }),
                   "data-[active=true]:text-primary data-[active=true]:font-medium"
                 )}
-                color="foreground"
-                href={item.href}
+                to={item.href}
               >
                 {item.label}
-              </Link>
+              </RouterLink>
             </NavbarItem>
           ))}
         </div>
@@ -59,17 +64,31 @@ export const Navbar = () => {
         justify="end"
       >
         <NavbarItem className="hidden sm:flex gap-2 items-center">
-          <Link isExternal href={siteConfig.links.twitter} title="Twitter">
-            <WhatsappIcon className="text-default-500" />
+          <Link isExternal href={siteConfig.links.twitter} title="WhatsApp">
+            <MessageCircle className="text-default-500" />
           </Link>
-          <Link isExternal href={siteConfig.links.discord} title="Discord">
-            <InstagramIcon className="text-default-500" />
+          <Link isExternal href={siteConfig.links.discord} title="Instagram">
+            <Instagram className="text-default-500" />
           </Link>
-          <Link isExternal href={siteConfig.links.github} title="GitHub">
-            <TiktokIcon className="text-default-500" />
+          <Link isExternal href={siteConfig.links.github} title="TikTok">
+            <Music2 className="text-default-500" />
           </Link>
 
-          <ThemeSwitch />
+          {/* Cart Button */}
+          <Button
+            isIconOnly
+            size="sm"
+            variant="light"
+            className="relative"
+            onPress={() => navigate('/cart')}
+          >
+            <ShoppingCart className="w-5 h-5" />
+            {cart.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                {cart.length}
+              </span>
+            )}
+          </Button>
 
           {/* Tombol Login / Logout */}
           {user ? (
@@ -91,7 +110,6 @@ export const Navbar = () => {
 
       {/* Mobile */}
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-        <ThemeSwitch />
         <NavbarMenuToggle />
       </NavbarContent>
 

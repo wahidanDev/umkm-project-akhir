@@ -7,6 +7,12 @@ export const productApi = {
     return res.data;
   },
 
+  // GET single product by ID
+  getById: async (id: string) => {
+    const res = await api.get(`/products/${id}`);
+    return res.data;
+  },
+
   // GET top products
   getTop: async () => {
     const res = await api.get("/products/top");
